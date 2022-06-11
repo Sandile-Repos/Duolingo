@@ -1,50 +1,51 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  ScrollView,
-  Image,
-  TextInput,
-  KeyboardAvoidingView,
-  StyleSheet,
-} from "react-native";
+import { Text, View, Image, TextInput } from "react-native";
 import icon from "./assets/icon.png";
 import styles from "./App.styles";
 
 const App = () => {
-  const [lines, setLines] = useState(false);
-  const changeLine = () => {
-    setLines(!lines);
-  };
-
-  const status = "error";
   return (
     <View style={styles.root}>
-      <Text
-        numberOfLines={lines ? 2 : null}
-        onPress={changeLine}
-        ellipsizeMode="tail"
-        style={[
-          styles.text,
-          styles.blue,
-          { color: status === "error" ? "red" : "green" },
-        ]}
-      >
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-      </Text>
-      <Image
-        // source={icon}
-        source={{
-          uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/elon.png",
-        }}
-        // style={{ width: 50, height: 100 }}
-        // resizeMode="contain"
-        style={{ width: 550, height: 500 }}
-        resizeMode="cover"
-      />
-      <KeyboardAvoidingView behavior="padding">
-        <TextInput placeholder="What's your name" />
-      </KeyboardAvoidingView>
+      <Text style={styles.title}>Which of these is the "glass"?</Text>
+      <View style={styles.optionsContainer}>
+        <View style={styles.optionContainer}>
+          <Image
+            source={{
+              uri: "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/cup.png ",
+            }}
+            style={styles.optionImage}
+            resizeMode="contain"
+          />
+          <Text style={styles.optionText}>Glass</Text>
+        </View>
+        <View style={styles.optionContainer}>
+          <Image
+            source={{
+              uri: "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/cup.png ",
+            }}
+            style={styles.optionImage}
+          />
+          <Text style={styles.optionText}>Glass</Text>
+        </View>
+        <View style={styles.optionContainer}>
+          <Image
+            source={{
+              uri: "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/cup.png ",
+            }}
+            style={styles.optionImage}
+          />
+          <Text style={styles.optionText}>Glass</Text>
+        </View>
+        <View style={styles.optionContainer}>
+          <Image
+            source={{
+              uri: "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/cup.png ",
+            }}
+            style={styles.optionImage}
+          />
+          <Text style={styles.optionText}>Glass</Text>
+        </View>
+      </View>
     </View>
   );
 };
