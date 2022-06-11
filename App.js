@@ -1,28 +1,50 @@
 import React, { useState } from "react";
-import { Text, View, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  ScrollView,
+  Image,
+  TextInput,
+  KeyboardAvoidingView,
+  StyleSheet,
+} from "react-native";
+import icon from "./assets/icon.png";
+import styles from "./App.styles";
 
 const App = () => {
   const [lines, setLines] = useState(false);
   const changeLine = () => {
     setLines(!lines);
   };
+
+  const status = "error";
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.root}>
       <Text
         numberOfLines={lines ? 2 : null}
         onPress={changeLine}
         ellipsizeMode="tail"
+        style={[
+          styles.text,
+          styles.blue,
+          { color: status === "error" ? "red" : "green" },
+        ]}
       >
         Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
       </Text>
+      <Image
+        // source={icon}
+        source={{
+          uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/elon.png",
+        }}
+        // style={{ width: 50, height: 100 }}
+        // resizeMode="contain"
+        style={{ width: 550, height: 500 }}
+        resizeMode="cover"
+      />
+      <KeyboardAvoidingView behavior="padding">
+        <TextInput placeholder="What's your name" />
+      </KeyboardAvoidingView>
     </View>
   );
 };
