@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Text, View, Alert } from "react-native";
 
 import styles from "./App.styles";
-import questions from "./assets/data/imageMultipleChoiceQuestions";
+
+// import questions from "./assets/data/imageMultipleChoiceQuestions";
 import ImageMultipleChoiceQuestion from "./src/components/ImageMultipleChoiceQuestion";
 
+// import questions from "./assets/data/openEndedQuestions";
+import OpenEndedQuestion from "./src/components/OpenEndedQuestion";
+
+import questions from "./assets/data/allQuestions";
+
 const App = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(
     questions[currentQuestionIndex]
   );
@@ -30,11 +36,20 @@ const App = () => {
 
   return (
     <View style={styles.root}>
-      <ImageMultipleChoiceQuestion
-        question={currentQuestion}
-        onCorrect={onCorrect}
-        onWrong={onWrong}
-      />
+      {currentQuestion.type === "IMAGE_MULTIPLE_CHOICE" && (
+        <ImageMultipleChoiceQuestion
+          question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        />
+      )}
+      {currentQuestion.type === "OPEN_ENDED" ? (
+        <OpenEndedQuestion
+          question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        />
+      ) : null}
     </View>
   );
 };
