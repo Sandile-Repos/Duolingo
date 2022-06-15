@@ -2,29 +2,26 @@ export default [
   {
     id: "q0",
     type: "FILL_IN_THE_BLANK",
-    textPre: "una nina",
-    textPost: "f sadfasd",
-    correct: "mujer",
-    options: ["yo", "el", "la", "mujer", "ela"],
-    // parts: [
-    //   {
-    //     text: "la",
-    //     isBlank: true,
-    //   },
-    //   {
-    //     text: "nino",
-    //     isBlank: true,
-    //   },
-    //   {
-    //     text: "el",
-    //     isBlank: true,
-    //   },
-    //   {
-    //     text: "nina",
-    //     isBlank: true,
-    //   },
-    // ],
-    // options: ["la", "el", "nina", "nino", "ella"],
+    parts: [
+      {
+        text: "la",
+        isBlank: true,
+      },
+      {
+        text: "nino",
+        // isBlank: true,
+      },
+      {
+        text: "el",
+        isBlank: true,
+      },
+      {
+        text: "nina",
+        // isBlank: true,
+      },
+    ],
+    options: ["la", "el", "mujer", "ella"],
+    // correct: "mujer",
   },
   {
     id: "q1",
