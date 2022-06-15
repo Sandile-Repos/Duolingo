@@ -6,44 +6,76 @@ import styles from "./styles";
 
 const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [parts, setParts] = useState(question.parts);
+
   const onButtonPress = () => {
-    // if (selectedOptions === question.correct) {
-    //   onCorrect();
-    // } else {
-    //   onWrong();
-    // }
+    if (checkIfCorrect()) {
+      onCorrect();
+    } else {
+      onWrong();
+    }
     // setSelectedOptions(null);
   };
-  const addOptionToSelected = (option) => {
-    //limit number of selected options
-    const numberOfBlanks = question.parts.filter((part) => part.isBlank).length;
-    if (numberOfBlanks > selectedOptions.length) {
-      setSelectedOptions([...selectedOptions, option]);
-    }
-  };
-  const removeOptionFromSelected = (option) => {
-    setSelectedOptions(
-      selectedOptions.filter((selectedOption) => selectedOption === option)
+
+  const checkIfCorrect = () => {
+    return (
+      parts.filter((part) => part.isBlank && part.selected !== part.text)
+        .length === 0
     );
   };
 
-  let blankIndex = -1;
+  const addOptionToSelected = (option) => {
+    //limit number of selected options
+    // const numberOfBlanks = question.parts.filter((part) => part.isBlank).length;
+    // if (numberOfBlanks > selectedOptions.length) {
+    //   setSelectedOptions([...selectedOptions, option]);
+    // }
+
+    if (isSelected(option)) {
+      return; // prevents adding  same selection if already selected
+    }
+    const newParts = [...parts];
+    for (let i = 0; i < newParts.length; i++) {
+      if (newParts[i].isBlank && !newParts[i].selected) {
+        newParts[i].selected = option;
+        break;
+      }
+    }
+    setParts(newParts);
+  };
+  const removeSelectedAt = (index) => {
+    // setSelectedOptions(
+    //   selectedOptions.filter((selectedOption) => selectedOption === option)
+    // );
+    const newParts = [...parts];
+    newParts[index].selected = null;
+    setParts(newParts);
+  };
+
+  const isSelected = (option) => {
+    return (
+      parts.filter((part) => part.isBlank && part.selected === option).length >
+      0
+    );
+  };
+
+  const isReadyToCheck = () => {
+    return parts.filter((part) => part.isBlank && !part.selected).length > 0;
+  };
 
   return (
     <>
       <Text style={styles.title}>Complete the sentence</Text>
       <View style={styles.row}>
-        {question.parts.map((part) => {
+        {parts.map((part, index) => {
+          console.log("before", part.text);
           if (part.isBlank) {
-            blankIndex += 1;
             return (
               <View style={styles.blank}>
-                {selectedOptions.length > blankIndex && (
+                {part.selected && (
                   <WordOption
-                    text={selectedOptions[blankIndex]}
-                    onPress={() =>
-                      removeOptionFromSelected(selectedOptions[blankIndex])
-                    }
+                    text={part.selected}
+                    onPress={() => removeSelectedAt(index)}
                   />
                 )}
               </View>
@@ -57,7 +89,7 @@ const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
         {question.options.map((option) => (
           <WordOption
             text={option}
-            isSelected={selectedOptions.includes(option)}
+            isSelected={isSelected(option)}
             onPress={() => addOptionToSelected(option)}
           />
         ))}
@@ -65,7 +97,7 @@ const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
       <Button
         text="Check"
         onPress={onButtonPress}
-        disabled={!selectedOptions.length}
+        disabled={isReadyToCheck()}
       />
     </>
   );

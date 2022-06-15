@@ -4,7 +4,7 @@ export default [
     type: "FILL_IN_THE_BLANK",
     parts: [
       {
-        text: "lai",
+        text: "la",
         isBlank: true,
       },
       {
