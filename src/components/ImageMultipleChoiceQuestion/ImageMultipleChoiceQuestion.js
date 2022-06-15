@@ -52,10 +52,4 @@ ImageMultipleChoiceQuestion.propTypes = {
   }).isRequired,
 };
 
-// ImageMultipleChoiceQuestion.defaultProps = {
-//   text: "Default",
-//   isSelected: false,
-//   onPress: () => {},
-// };
-
 export default ImageMultipleChoiceQuestion;

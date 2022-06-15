@@ -9,7 +9,6 @@ export default [
       },
       {
         text: "nino",
-        // isBlank: true,
       },
       {
         text: "el",
@@ -17,11 +16,9 @@ export default [
       },
       {
         text: "nina",
-        // isBlank: true,
       },
     ],
-    options: ["la", "el", "mujer", "ell"],
-    // correct: "mujer",
+    options: ["la", "el", "nina", "nino", "ella"],
   },
   {
     id: "q1",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View } from "react-native";
 import Button from "../Button";
-import WordOption from "../WordOption/WordOption";
+import WordOption from "../WordOption";
 import styles from "./styles";
 
 const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
@@ -14,7 +14,6 @@ const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
     } else {
       onWrong();
     }
-    // setSelectedOptions(null);
   };
 
   const checkIfCorrect = () => {
@@ -25,12 +24,6 @@ const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
   };
 
   const addOptionToSelected = (option) => {
-    //limit number of selected options
-    // const numberOfBlanks = question.parts.filter((part) => part.isBlank).length;
-    // if (numberOfBlanks > selectedOptions.length) {
-    //   setSelectedOptions([...selectedOptions, option]);
-    // }
-
     if (isSelected(option)) {
       return; // prevents adding  same selection if already selected
     }
@@ -44,9 +37,6 @@ const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
     setParts(newParts);
   };
   const removeSelectedAt = (index) => {
-    // setSelectedOptions(
-    //   selectedOptions.filter((selectedOption) => selectedOption === option)
-    // );
     const newParts = [...parts];
     newParts[index].selected = null;
     setParts(newParts);
@@ -68,7 +58,6 @@ const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
       <Text style={styles.title}>Complete the sentence</Text>
       <View style={styles.row}>
         {parts.map((part, index) => {
-          console.log("before", part.text);
           if (part.isBlank) {
             return (
               <View style={styles.blank}>
