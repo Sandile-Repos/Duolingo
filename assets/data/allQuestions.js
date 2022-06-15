@@ -1,27 +1,31 @@
 export default [
-  // {
-  //   id: "q0",
-  //   type: "FILL_IN_THE_BLANK",
-  //   parts: [
-  //     {
-  //       text: "la",
-  //       isBlank: true,
-  //     },
-  //     {
-  //       text: "nino",
-  //       isBlank: true,
-  //     },
-  //     {
-  //       text: "el",
-  //       isBlank: true,
-  //     },
-  //     {
-  //       text: "nina",
-  //       isBlank: true,
-  //     },
-  //   ],
-  //   options: ["la", "el", "nina", "nino", "ella"],
-  // },
+  {
+    id: "q0",
+    type: "FILL_IN_THE_BLANK",
+    textPre: "una nina",
+    textPost: "f sadfasd",
+    correct: "mujer",
+    options: ["yo", "el", "la", "mujer", "ela"],
+    // parts: [
+    //   {
+    //     text: "la",
+    //     isBlank: true,
+    //   },
+    //   {
+    //     text: "nino",
+    //     isBlank: true,
+    //   },
+    //   {
+    //     text: "el",
+    //     isBlank: true,
+    //   },
+    //   {
+    //     text: "nina",
+    //     isBlank: true,
+    //   },
+    // ],
+    // options: ["la", "el", "nina", "nino", "ella"],
+  },
   {
     id: "q1",
     type: "IMAGE_MULTIPLE_CHOICE",

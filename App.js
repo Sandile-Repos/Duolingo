@@ -7,6 +7,7 @@ import ImageMultipleChoiceQuestion from "./src/components/ImageMultipleChoiceQue
 import OpenEndedQuestion from "./src/components/OpenEndedQuestion";
 import questions from "./assets/data/allQuestions";
 import Header from "./src/components/Header/Header";
+import FillInTheBlank from "./src/components/FillInTheBlank";
 
 const App = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -90,7 +91,13 @@ const App = () => {
   };
 
   if (!hasLoaded) {
-    return <ActivityIndicator />;
+    return (
+      <ActivityIndicator
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        size="large"
+        color=""
+      />
+    );
   }
 
   return (
@@ -99,6 +106,13 @@ const App = () => {
         progress={currentQuestionIndex / questions.length}
         lives={lives}
       />
+      {currentQuestion.type === "FILL_IN_THE_BLANK" && (
+        <FillInTheBlank
+          question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        />
+      )}
       {currentQuestion.type === "IMAGE_MULTIPLE_CHOICE" && (
         <ImageMultipleChoiceQuestion
           question={currentQuestion}
