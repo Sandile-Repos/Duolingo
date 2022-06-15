@@ -4,7 +4,7 @@ export default [
     type: "FILL_IN_THE_BLANK",
     parts: [
       {
-        text: "la",
+        text: "lai",
         isBlank: true,
       },
       {
@@ -20,7 +20,7 @@ export default [
         // isBlank: true,
       },
     ],
-    options: ["la", "el", "mujer", "ella"],
+    options: ["la", "el", "mujer", "ell"],
     // correct: "mujer",
   },
   {

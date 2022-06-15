@@ -15,9 +15,19 @@ const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
     // setSelectedOptions(null);
   };
   const addOptionToSelected = (option) => {
-    setSelectedOptions([...selectedOptions, option]);
-    console.log(selectedOptions);
+    //limit number of selected options
+    const numberOfBlanks = question.parts.filter((part) => part.isBlank).length;
+    if (numberOfBlanks > selectedOptions.length) {
+      setSelectedOptions([...selectedOptions, option]);
+    }
   };
+  const removeOptionFromSelected = (option) => {
+    setSelectedOptions(
+      selectedOptions.filter((selectedOption) => selectedOption === option)
+    );
+  };
+
+  let blankIndex = -1;
 
   return (
     <>
@@ -25,16 +35,17 @@ const FillInTheBlank = ({ question, onCorrect, onWrong }) => {
       <View style={styles.row}>
         {question.parts.map((part) => {
           if (part.isBlank) {
+            blankIndex += 1;
             return (
               <View style={styles.blank}>
-                {/* {selected && (
+                {selectedOptions.length > blankIndex && (
                   <WordOption
-                    text={selected}
-                    onPress={() => {
-                      setSelected(null);
-                    }}
+                    text={selectedOptions[blankIndex]}
+                    onPress={() =>
+                      removeOptionFromSelected(selectedOptions[blankIndex])
+                    }
                   />
-                )} */}
+                )}
               </View>
             );
           } else {
