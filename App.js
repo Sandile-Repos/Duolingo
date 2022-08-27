@@ -21,7 +21,9 @@ const App = () => {
   useEffect(() => {
     if (currentQuestionIndex >= questions.length) {
       Alert.alert("You won");
-      setCurrentQuestionIndex(0);
+      // setCurrentQuestionIndex(0);
+      // setLives(5);
+      restart();
     } else {
       setCurrentQuestion(questions[currentQuestionIndex]);
     }

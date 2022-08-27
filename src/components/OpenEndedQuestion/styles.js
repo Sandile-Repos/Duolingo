@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   mascot: {
-    width: "30%",
+    width: "20%",
     aspectRatio: 3 / 4,
     marginRight: 10,
   },
